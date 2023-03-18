@@ -1,0 +1,74 @@
+Thread= It is light weight process performing single task
+
+Multithreading: Multiple tasks(threads) are executing simultaneously are called  Multithreading.
+
+//Steps to create the thread  by extending Thread
+
+1. Create any user defined class and that extends Thread
+
+   class  A extends Thread
+   {
+
+   }
+
+2. override the run() of Thread class inside the  user defined class
+
+  class  A extends Thread
+   {
+        public void run()
+        {
+          //task of Thread    
+        }
+   }
+
+3. Create the object of user defined class and call the start() 
+   A a1=new A();
+    a1.start();
+
+
+//steps for creating thread by implementing Runnable  interface
+
+1. Create any user defined class and that implements Runnable interface
+
+
+  class A implements Runnable
+   {
+
+   }
+
+2.  override the run() of Runnable interface inside the  user defined class
+
+ class A implements Runnable
+   {
+        public void run()
+       {
+          //task of thread
+       }
+   }
+
+
+3. Create the Object of User Defined class.
+
+   A a1=new A();
+
+4. Create the Object of Thread of class with parameter of class A object
+
+     Thread t1=new Thread(a1);
+
+5. class the start() of Thread class
+   
+     t1.start();
+
+
+
+//Thread class
+
+
+//It is used to create thread
+
+1. Thread()
+2.Thread(String name)
+3.Thread(Runnable r)
+4.Thread(Runnable r,String name)
+
+

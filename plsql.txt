@@ -1,0 +1,101 @@
+create or replace function addTwoNos(x INT,y INT) return INT
+is
+z INT;
+begin
+z:=x+y;
+dbms_output.put_line('Addition '||z);
+return z;
+end;
+
+
+execution of function
+
+select addTwoNos(12,13) from dual;
+
+output:
+
+ADDTWONOS(12,13)
+25
+
+
+
+declare
+res INT;
+begin
+res:=addTwoNos(12,13);
+dbms_output.put_line(res);
+end;
+
+output:
+Addition 25
+25
+
+
+
+create or replace function getSimpleInterest(P int,N int,R int)
+return INT
+is
+si INT;
+begin
+si:=(P*N*R)/100;
+return si;
+end;
+
+
+
+
+select getSimpleInterest(1000,1,10) from dual;
+
+
+declare
+x INT;
+begin
+x:=getSimpleInterest(1000,1,10);
+dbms_output.put_line(x);
+end;
+
+
+create or replace procedure Multiplication(x INT,y INT)
+is
+z INT;
+begin
+z:=x*y;
+dbms_output.put_line(z);
+end;
+
+
+begin
+Multiplication(20,30);
+end;
+
+
+create or replace procedure greetings
+is
+begin
+
+dbms_output.put_line('This is Simple Procedure');
+end;
+
+
+begin
+greetings;
+end;
+
+
+
+
+
+    Procedure                                                                                           Function
+-----------------------------------------------------------------------------------------------------------------
+1. procedure do not return value                   1. Function return value
+2. can not procedure inside select                 2. can be called function inside select
+3.DML query can be executed                      3.DML query can not be executed inside procedure
+   inside procedure
+
+
+
+
+
+
+
+

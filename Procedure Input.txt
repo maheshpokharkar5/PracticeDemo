@@ -1,0 +1,93 @@
+//procedure having 3 type of parameter
+
+IN =     used to take the input from calling procedure when called procedure  is invoked
+OUT=  used to give the the updated value from called procedure  to calling procedure after procedure execution
+
+IN OUT=   take input from calling procedure into called procedure 
+                                               AND
+                  give the the updated value from called procedure  to calling procedure
+
+when input parameter in procedure are NOT defined with IN,OUT or IN OUT,
+by default they are considered as IN
+
+create or replace procedure poly(x in INT,y in INT, z in INT)
+is
+res INT;
+begin
+res:=x+y+z;
+dbms_output.put_line('Addition '||res);
+end;
+
+
+begin
+
+poly(10,20,30);
+
+end;
+
+
+create or replace procedure Addition(x in INT,y in INT, z out INT)
+is
+res INT;
+begin
+res:=x+y;
+z:=res;
+dbms_output.put_line('Addition '||res);
+end;
+
+
+declare
+d INT;
+begin
+Addition(10,20,d);
+dbms_output.put_line('Value of d=.... '||d);
+end;
+
+
+
+
+
+
+
+
+
+create or replace procedure Addition(x in INT,y in INT, z out INT)
+is
+res INT;
+begin
+res:=x+y;
+z:=res;
+dbms_output.put_line('Addition '||res);
+end;
+
+
+declare
+z INT;
+begin
+Addition(10,20,z);
+dbms_output.put_line('Value of d=.... '||z);
+end;
+
+
+
+
+create or replace procedure Addition(x in INT,y in INT, z in out INT)
+is
+res INT;
+begin
+res:=x+y+z;
+z:=res;
+dbms_output.put_line('Addition '||res);
+end;
+
+
+declare
+d INT:=10;
+begin
+Addition(10,20,d);
+dbms_output.put_line('Value of d=.... '||d);
+end;
+
+
+
+

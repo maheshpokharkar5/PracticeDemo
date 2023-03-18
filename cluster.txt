@@ -1,0 +1,62 @@
+1. create the cluster
+
+create cluster emp_order(id number);
+
+2. create the index on the cluster
+
+create index emp_order_index on cluster emp_order;
+
+create index emp_order_index on cluster emp_order;
+
+3.create the table
+
+create table amazon_customer
+(
+id number,
+name varchar(20),
+city varchar(20)
+)cluster emp_order(id);
+
+
+create table amazon_order
+(
+order_id number,
+order_name varchar(20),
+id number
+)cluster emp_order(id);
+
+4. insert the data
+
+insert into amazon_customer values(1001,'Ganesh','Pune');
+
+insert into amazon_customer values(1002,'Ramesh','Mumbai');
+
+
+insert into amazon_order values(1,'TV',1001);
+
+insert into amazon_order values(2,'AC',1002);
+
+
+select ROWID,Order_id,Order_name,id from amazon_order;
+
+select ROWID,id,name,city from amazon_customer
+
+
+
+
+
+
+select ROWID,Order_id,Order_name,id from amazon_order;
+
+ROWID	                              ORDER_ID	ORDER_NAME	ID
+------------------------------------------------------------------------------------------
+AAAFseAABAAALBKAAA	1	TV	                 1001
+AAAFseAABAAALBLAAA	2	AC	                  1002
+
+
+select ROWID,id,name,city from amazon_customer
+
+ROWID	                                      ID	NAME	CITY
+--------------------------------------------------------------------------------------
+AAAFseAABAAALBKAAA	1001	Ganesh	Pune
+AAAFseAABAAALBLAAA	1002	Ramesh	Mumbai

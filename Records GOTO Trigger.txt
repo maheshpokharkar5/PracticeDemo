@@ -1,0 +1,111 @@
+--user defined Record
+
+
+declare
+type Book is Record(id INT,name varchar(20),author varchar(20),price INT);
+book1 Book;
+book2 Book;
+
+
+procedure displayBook(b Book) is
+begin
+dbms_output.put_line(b.id||'  '||b.name||'  '||b.author||'  '||b.price);
+end;
+
+begin
+book1.id:=11;
+book1.name:='C Programming';
+book1.author:='Kanetkar';
+book1.price:=300;
+
+book2.id:=12;
+book2.name:='Java Programming';
+book2.author:='Balgurusamy';
+book2.price:=400;
+
+
+displayBook(book1);
+displayBook(book2);
+
+end;
+
+
+
+
+begin
+
+dbms_output.put_line('First Line');
+dbms_output.put_line('Second Line');
+goto xyz;
+dbms_output.put_line('Third Line');
+dbms_output.put_line('Fourth Line');
+dbms_output.put_line('Fifth Line');
+dbms_output.put_line('Sixth Line');
+dbms_output.put_line('Seventh Line');
+<<xyz>>
+dbms_output.put_line('Eight Line');
+dbms_output.put_line('Ninenth Line');
+dbms_output.put_line('Tenth Line');
+
+
+end;
+
+
+
+
+
+
+
+
+
+-Trigger
+
+Trigger is a procedure which is executed automatically when we are inserting,deleting updating table;
+
+create table BOI_Account
+(
+ACC_NO number,
+Name varchar(20),
+balance number
+)
+
+begin
+insert into BOI_Account values(1001,'Ganesh',10000);
+insert into BOI_Account values(1002,'Ramesh',15000);
+insert into BOI_Account values(1003,'Kiran',20000);
+insert into BOI_Account values(1004,'Gautam',30000);
+end;
+
+select * from BOI_Account;
+update BOI_Account set Balance=Balance+5000 where ACC_NO=1001
+
+
+
+
+CREATE OR REPLACE  TRIGGER BOI_Trigger 
+AFTER 
+UPDATE 
+ON BOI_Account
+FOR EACH ROW
+DECLARE 
+bal_diff number;
+BEGIN 
+  if :NEW.balance > :OLD.balance then
+bal_diff:=  :NEW.balance-:OLD.balance;
+dbms_output.put_line('Amount is credited of '||bal_diff);
+   else
+bal_diff:=  :OLD.balance-:NEW.balance;
+dbms_output.put_line('Amount is debited of '||bal_diff);
+   end if;
+
+dbms_output.put_line('Your balance was '||:OLD.balance);
+dbms_output.put_line('Now your updated balance is  '||:NEW.balance);
+
+END;
+
+
+
+update BOI_Account set Balance=Balance+5000 where ACC_NO=1001
+
+update BOI_Account set Balance=Balance-2000 where ACC_NO=1001
+

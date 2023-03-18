@@ -1,0 +1,15 @@
+declare
+cursor emp_cursor is select id,name,city,salary from EMP;
+emp_record emp_cursor%ROWTYPE;
+begin
+open emp_cursor;
+
+loop
+fetch emp_cursor into emp_record; 
+exit when emp_cursor%NOTFOUND;
+
+dbms_output.put_line(emp_record.ID||'  '||emp_record.NAME||' '||emp_record.CITY||'  '||emp_record.SALARY); 
+end loop;
+
+close emp_cursor; 
+end;

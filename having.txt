@@ -1,0 +1,29 @@
+//Where
+
+--used to apply filter on the data set
+-- where clause is used to apply filter on select query result
+--after select it should be used immedietly
+
+//Group By clause:
+   --it is used to group the data based on column
+  -- we can use aggregate function with like sum(),min(),count(),max() with group by clause
+
+select city,count(salary) from emp group by city;
+
+
+//Order By clause
+ used to sort the data in ascending or descending order
+
+ASC:  ascending order
+DESC: descending order
+
+
+
+
+//Having
+select city,count(city) from emp where id<=40 group by city having COUNT(CITY)>5 order by city;
+
+--having cluase is used to apply filter  but on the group by result
+--after group by clause immedietly
+
+

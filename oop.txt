@@ -1,0 +1,71 @@
+//OOP features of java 
+
+//1. Class and Objects:
+
+
+//Class: It is template which defines variables(property) and method
+
+
+class classname
+{
+//variable declaration
+//method defination
+
+}
+
+//Object: It is instance of class.
+
+Class_Name obj_name=new Class_Name();
+
+
+
+
+
+
+
+
+
+insert into Customers Values(11,'Ganesh','Pune',8765432108);
+insert into Customers Values(12,'Vinayak','Mumbai',9876543210);
+insert into Customers Values(13,'Sarika','Chennai',8765432100);
+insert into Customers Values(14,'Rama','Mumbai',8765432200);
+insert into Customers Values(15.'Kiran','Chennai',8790564321);
+
+
+
+
+create table Order
+(
+Order_No INT,
+Prod_Name varchar(30),
+Order_Date date,
+id Number
+);
+
+
+insert into Orders values(1001,'AC','03-Feb-23',12);
+insert into Orders values(1002,'FAN','03-Feb-23',14);
+insert into Orders values(1003,'TV','03-Feb-23',11);
+
+
+1002	FAN	03-Feb-23	14
+1003	TV	03-Feb -23	11
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public static boolean isPrime(int number) {
+    return !IntStream.rangeClosed(2, number/2).anyMatch(i -> number%i == 0); 
+}

@@ -1,0 +1,283 @@
+create table Stud_Nov
+(
+id INT Primary Key,
+name varchar(20),
+city varchar(20),
+salary INT
+)
+
+
+desc Stud_Nov
+
+Table	    Column	Data Type	             Length	Precision	Scale	Primary Key	Nullable	Default	Comment
+STUD_NO   ID	        Number	-	-	0	1	                 -	-	-
+ 	    NAME         Varchar2	20	-	-	-	              nullable	-	-
+ 	   CITY	      Varchar2	20	-	-	-	            nullable	-	-
+ 	  SALARY      Number	-	-	0	-	             nullable	-	-
+
+
+insert into Stud_nov values(11,'Ganesh','Pune',90000);
+
+insert into Stud_nov values(12,'Sachin','Mumbai',70000);
+
+
+
+insert into Stud_nov values(12,'Shashi','Chennai',72000);
+
+
+ORA-00001: unique constraint (SYSTEM.SYS_C007185) violated
+
+select * from Stud_nov;
+
+
+ID	NAME	CITY	SALARY
+11	Ganesh	Pune	90000
+12	Sachin	Mumbai	70000
+
+
+
+
+
+alter table Table_Name add column_name Data_Type;
+
+alter table Stud_Nov add Email varchar(30);
+
+
+select * from Stud_nov;
+
+
+ID	NAME	CITY	SALARY	EMAIL
+11	Ganesh	Pune	90000	-
+12	Sachin	Mumbai	70000	-
+
+
+alter table Stud_Nov add Mobile number;
+
+select * from Stud_nov;
+
+
+ID	NAME	CITY	SALARY	EMAIL	MOBILE
+11	Ganesh	Pune	90000	-	-
+12	Sachin	Mumbai	70000	-	-
+
+
+alter table Table_Name drop column col_name;
+
+alter table Stud_Nov drop column Email;
+
+
+
+ID	NAME	CITY	SALARY	MOBILE
+11	Ganesh	Pune	90000	-
+12	Sachin	Mumbai	70000	-
+
+alter table Stud_Nov drop column Mobile;
+
+
+
+
+select * from Stud_nov;
+
+
+ID	NAME	CITY	SALARY
+11	Ganesh	Pune	90000
+12	Sachin	Mumbai	70000
+
+
+drop table Stud_nov;
+
+
+create table Stud_Nov
+(
+id INT Unique,
+name varchar(20),
+city varchar(20),
+salary INT
+)
+
+
+desc Stud_Nov;
+
+
+
+Table	          Column	Data   Type	Length	Precision	Scale	Primary Key	Nullable	Default	Comment
+STUD_NOV	ID	Number	                -	-	0	-	                nullable	-	-
+ 	            NAME	Varchar2	               20	-	-	-	                nullable	-	-
+ 	             CITY	Varchar2	               20	-	-	-	                nullable	-	-
+ 	              SALARY	Number	                -	-	0	-	                nullable	-	-
+
+
+
+insert into Stud_nov values(11,'Ganesh','Pune',90000);
+
+insert into Stud_nov values(12,'Sachin','Mumbai',70000);
+
+
+
+insert into Stud_nov values(12,'Shashi','Chennai',72000);
+
+ORA-00001: unique constraint (SYSTEM.SYS_C007185) violated
+
+select * from Stud_nov;
+
+
+ID	NAME	CITY	SALARY
+11	Ganesh	Pune	90000
+12	Sachin	Mumbai	70000
+
+
+
+
+drop table Stud_nov;
+
+
+create table Stud_Nov
+(
+id INT,
+name varchar(20),
+city varchar(20),
+salary INT,
+Primary Key(id)
+)
+
+
+
+
+insert into Stud_nov values(11,'Ganesh','Pune',90000);
+
+insert into Stud_nov values(12,'Sachin','Mumbai',70000);
+
+insert into Stud_nov values(13,'Shashi','Chennai',72000);
+
+insert into Stud_nov values(NULL,'Meera','Chennai',72000);
+
+
+
+drop table Stud_nov;
+
+
+create table Stud_Nov
+(
+id INT,
+name varchar(20),
+city varchar(20),
+salary INT,
+Unique(id)
+)
+
+
+
+
+insert into Stud_nov values(11,'Ganesh','Pune',90000);
+
+insert into Stud_nov values(12,'Sachin','Mumbai',70000);
+
+insert into Stud_nov values(13,'Shashi','Chennai',72000);
+
+insert into Stud_nov values(NULL,'Meera','Chennai',72000);
+
+
+select * from Stud_nov;
+
+  ID	NAME	CITY	SALARY
+  11	Ganesh	Pune	90000
+  12	Sachin	Mumbai	70000
+  13	Shashi	Chennai	72000
+   -	Meera	Chennai	72000
+
+
+drop table Stud_nov;
+
+
+create table Stud_Nov
+(
+id INT primary key,
+name varchar(20) primary key,
+city varchar(20),
+salary INT
+)
+
+
+ORA-02260: table can have only one primary key
+
+
+create table Stud_Nov
+(
+id INT Unique,
+name varchar(20) unique,
+city varchar(20),
+salary INT
+)
+
+
+Table created.
+
+
+select * from EMP;
+
+select Id,Name,City from EMP 
+
+
+
+
+
+
+
+
+
+begin
+insert into Stud_nov values(11,'Ganesh','Pune',90000);
+insert into Stud_nov values(12,'Sachin','Mumbai',70000);
+insert into Stud_nov values(13,'Shashi','Chennai',72000);
+insert into Stud_nov values(14,'Shashi','Chennai',72000);
+insert into Stud_nov values(14,'Kalpesh','Chennai',72000);
+
+end;
+
+
+update Student_NOV set id=15 where name='Kalpesh'
+
+update Student_NOV
+
+select * from student_NOV
+
+
+
+update Student_NOV set id=ROWNUM+10  where id=15
+
+select * from student_NOV
+
+
+
+ID	NAME	CITY	SALARY
+11	Ganesh	Pune	70000
+12	Sachin	Mumbai	72000
+13	Kishor	Chennai	67000
+14	Kalpesh	Pune	98000
+15	Kalpesh	Delhi	63000
+
+
+
+delete from Student_Nov where id=15;
+
+select * from Student_Nov
+
+
+ID	NAME	CITY	SALARY
+11	Ganesh	Pune	70000
+12	Sachin	Mumbai	72000
+13	Kishor	Chennai	67000
+14	Kalpesh	Pune	98000
+
+
+delete from Student_Nov;
+
+
+select * from Student_Nov;
+
+No Data Found
+
+select * from Student_Nov;
+
+Rollback;
+

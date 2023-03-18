@@ -1,0 +1,348 @@
+TCL Commands:
+
+1. Commit
+ It is used to save the changes into the database permanently.
+
+2. Rollback:
+  It used to revert the changes made by insert,delete and update till the last commit.
+
+  Rollback to Savepoint;
+It used to revert the changes made by insert,delete and update till the given savepoint.
+
+3.Savepoint
+   It used to save the transaction where we can revert the changes.
+
+
+
+
+Steps: Windows=> scroll Programs Lists=>Oracle Database 10g Express Edition=>Run SQL Command Line
+
+
+
+
+
+SQL> connect
+Enter user-name: system
+Enter password:12345
+Connected.
+
+SQL> create table Voter(id INT,name varchar(10),city varchar(10));
+
+Table created.
+
+SQL> insert into Voter values(101,'Ramesh','Pune');
+
+1 row created.
+
+SQL> insert into Voter values(102,'Yogesh','Mumbai');
+
+1 row created.
+
+SQL> insert into Voter values(103,'Sandesh','Chennai');
+
+1 row created.
+
+SQL> insert into Voter values(104,'Dev','Delhi');
+
+1 row created.
+
+SQL> select * from Voter;
+
+        ID NAME       CITY
+---------- ---------- ----------
+       101 Ramesh     Pune
+       102 Yogesh     Mumbai
+       103 Sandesh    Chennai
+       104 Dev        Delhi
+
+SQL> commit;
+
+Commit complete.
+
+SQL> insert into Voter values(105,'Sangeeta','Pune');
+
+1 row created.
+
+SQL> select * from Voter;
+
+        ID NAME       CITY
+---------- ---------- ----------
+       101 Ramesh     Pune
+       102 Yogesh     Mumbai
+       103 Sandesh    Chennai
+       104 Dev        Delhi
+       105 Sangeeta   Pune
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from Voter;
+
+        ID NAME       CITY
+---------- ---------- ----------
+       101 Ramesh     Pune
+       102 Yogesh     Mumbai
+       103 Sandesh    Chennai
+       104 Dev        Delhi
+
+SQL> delete from Voter;
+
+4 rows deleted.
+
+
+
+SQL> select * from Voter;
+
+no rows selected
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from Voter;
+
+        ID NAME       CITY
+---------- ---------- ----------
+       101 Ramesh     Pune
+       102 Yogesh     Mumbai
+       103 Sandesh    Chennai
+       104 Dev        Delhi
+
+SQL> delete from Voter;
+
+4 rows deleted.
+
+SQL> select * from Voter;
+
+no rows selected
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from Voter;
+
+no rows selected
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from Voter;
+
+no rows selected
+
+SQL> select * from Voter;
+
+no rows selected
+
+SQL> insert into Voter values(101,'Ramesh','Pune');
+
+1 row created.
+
+SQL> insert into Voter values(102,'Yogesh','Mumbai');
+
+1 row created.
+
+SQL> insert into Voter values(103,'Sandesh','Chennai');
+
+1 row created.
+
+SQL> insert into Voter values(104,'Dev','Delhi');
+
+1 row created.
+
+SQL> insert into Voter values(105,'Sangeeta','Pune');
+
+1 row created.
+
+SQL> select * from Voter;
+
+        ID NAME       CITY
+---------- ---------- ----------
+       101 Ramesh     Pune
+       102 Yogesh     Mumbai
+       103 Sandesh    Chennai
+       104 Dev        Delhi
+       105 Sangeeta   Pune
+
+SQL> commit;
+
+Commit complete.
+
+SQL> insert into Voter values(106,'Chris','Chennai');
+
+1 row created.
+
+SQL> savepoint A;
+
+Savepoint created.
+
+SQL> insert into Voter values(107,'Bravo','Bengaluru');
+
+1 row created.
+
+SQL> savepoint B;
+
+Savepoint created.
+
+SQL> insert into Voter values(108,'Pollard','Mumbai');
+
+1 row created.
+
+SQL> savepoint C;
+
+Savepoint created.
+
+SQL> insert into Voter values(109,'Shubham','Chennai');
+
+1 row created.
+
+SQL> insert into Voter values(110,'Rishabh','Delhi');
+
+1 row created.
+
+SQL> select * from Voter;
+
+        ID NAME       CITY
+---------- ---------- ----------
+       107 Bravo      Bengaluru
+       108 Pollard    Mumbai
+       109 Shubham    Chennai
+       110 Rishabh    Delhi
+       101 Ramesh     Pune
+       102 Yogesh     Mumbai
+       103 Sandesh    Chennai
+       104 Dev        Delhi
+       105 Sangeeta   Pune
+       106 Chris      Chennai
+
+10 rows selected.
+
+SQL> select * from Voter order by ID;
+
+        ID NAME       CITY
+---------- ---------- ----------
+       101 Ramesh     Pune
+       102 Yogesh     Mumbai
+       103 Sandesh    Chennai
+       104 Dev        Delhi
+       105 Sangeeta   Pune
+       106 Chris      Chennai
+       107 Bravo      Bengaluru
+       108 Pollard    Mumbai
+       109 Shubham    Chennai
+       110 Rishabh    Delhi
+
+10 rows selected.
+
+SQL> rollback to C;
+
+Rollback complete.
+
+SQL> select * from Voter order by ID;
+
+        ID NAME       CITY
+---------- ---------- ----------
+       101 Ramesh     Pune
+       102 Yogesh     Mumbai
+       103 Sandesh    Chennai
+       104 Dev        Delhi
+       105 Sangeeta   Pune
+       106 Chris      Chennai
+       107 Bravo      Bengaluru
+       108 Pollard    Mumbai
+
+8 rows selected.
+
+SQL> rollback to B;
+
+Rollback complete.
+
+SQL> select * from Voter order by ID;
+
+        ID NAME       CITY
+---------- ---------- ----------
+       101 Ramesh     Pune
+       102 Yogesh     Mumbai
+       103 Sandesh    Chennai
+       104 Dev        Delhi
+       105 Sangeeta   Pune
+       106 Chris      Chennai
+       107 Bravo      Bengaluru
+
+7 rows selected.
+
+SQL> rollback to A;
+
+Rollback complete.
+
+SQL> select * from Voter order by ID;
+
+        ID NAME       CITY
+---------- ---------- ----------
+       101 Ramesh     Pune
+       102 Yogesh     Mumbai
+       103 Sandesh    Chennai
+       104 Dev        Delhi
+       105 Sangeeta   Pune
+       106 Chris      Chennai
+
+6 rows selected.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from Voter order by ID;
+
+        ID NAME       CITY
+---------- ---------- ----------
+       101 Ramesh     Pune
+       102 Yogesh     Mumbai
+       103 Sandesh    Chennai
+       104 Dev        Delhi
+       105 Sangeeta   Pune
+
+SQL>
+
+create table EMP as select * from EMP_Backup;
+
+select * from EMP where city='Mumbai';
+
+select * from EMP where city<>'Mumbai';
+
+
+select * from EMP where salary < 100000
+
+select * from EMP where salary between 50000 AND 70000
+
+select * from EMP where NAME between 'A' AND 'B'
+
+select * from EMP where city in ('Pune','Mumbai') OR salary between 50000 and 70000
+
+
+
+
+
+
+select * from EMP where name like 'S%';
+
+fetches record whose name starting with S
+
+
+
+select * from EMP where name like '%sh';
+
+fetches record whose name ending with 'sh'
+
+
+
+select * from EMP where name like '%a'
+fetches record whose name ending with 'a'
+
+
+
+
+

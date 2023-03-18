@@ -1,0 +1,18 @@
+declare
+e_id   number;    
+e_name varchar(20);
+e_city   varchar(20);
+
+cursor c_emp is select id,name,city from emp;               
+begin
+open c_emp;                                                               
+
+loop
+fetch c_emp into e_id,e_name,e_city;
+exit when c_emp%NOTFOUND;
+dbms_output.put_line(e_id||'     '||e_name||'      '||e_city);
+end loop;
+
+
+close c_emp;
+end;

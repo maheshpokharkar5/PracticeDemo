@@ -1,0 +1,110 @@
+---------------------------User Defined Cursor----------------------
+declare
+e_id INT;
+e_name varchar(20);
+e_city varchar(20);
+e_salary INT;
+cursor emp_cur is select id,name,city,salary from EMP where city='Pune'
+begin
+open emp_cur;
+loop
+fetch emp_cur into e_id,e_name,e_city,e_salary;
+exit when emp_cur%NOTFOUND;
+ dbms_output.put_line(e_id||'   '||e_name||'   '||e_city||'   '||e_salary);
+end loop;
+close emp_cur;
+end;
+
+---------------------------- Reference Cusror example 1---------------------------------------------
+create or replace function getEmployeeData return SYS_REFCURSOR 
+is
+emp_cursor SYS_REFCURSOR;
+begin
+open emp_cursor for select id,name,city,salary from EMP;
+return emp_cursor; 
+end;
+
+
+declare
+e_id INT;
+e_name varchar(20);
+e_city varchar(20);
+e_salary INT;
+emp_cur SYS_REFCURSOR;
+begin
+emp_cur:=getEmployeeData; 
+loop
+fetch emp_cur into e_id,e_name,e_city,e_salary;
+exit when emp_cur%NOTFOUND; 
+dbms_output.put_line(e_id||'         '||e_name||'         '||e_city||'       '||e_salary);
+end loop;
+end;
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+---------------------------- Reference Cusror example 2---------------------------------------------
+
+
+create or replace function getDataByCity(e_city varchar) return SYS_REfCURSOR
+is
+emp_cur SYS_REfCURSOR;
+begin
+open emp_cur for select id,name,city,salary from emp where city=e_city;
+return emp_cur;  
+end;
+
+
+
+declare
+e_id EMP.ID%TYPE;
+e_name EMP.NAME%TYPE;
+e_city EMP.CITY%TYPE;
+e_salary EMP.SALARY%TYPE;
+emp_cur SYS_REFCURSOR;
+begin
+emp_cur:=getDataByCity('Pune');
+
+loop
+fetch emp_cur into e_id,e_name,e_city,e_salary;
+exit when emp_cur%NOTFOUND;
+dbms_output.put_line(e_id||'  '||e_name||'  '||e_city||'  '||e_salary); 
+end loop;
+
+close emp_cur;
+end;
+
+---------------------------------------------------------------------------------------------------------
+create or replace function getTableRecords(name varchar) return SYS_REFCURSOR
+is
+cur SYS_REFCURSOR;
+begin
+if name='EMP' then
+open cur for select id,name,city from EMP;
+elsif name='Customer' then
+open cur for select id,name,city from CUSTOMER;
+end if;
+return cur;
+end;
+
+
+
+declare
+e_id EMP.ID%TYPE;
+e_name EMP.NAME%TYPE;
+e_city EMP.CITY%TYPE;
+
+emp_cur SYS_REFCURSOR;
+begin
+emp_cur:=getTableRecords('EMP');
+
+loop
+fetch emp_cur into e_id,e_name,e_city;
+exit when emp_cur%NOTFOUND;
+dbms_output.put_line(e_id||'  '||e_name||'  '||e_city); 
+end loop;
+
+close emp_cur;
+end;
+
+

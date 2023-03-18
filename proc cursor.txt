@@ -1,0 +1,24 @@
+create or replace procedure Show_Data 
+is
+
+s_id stud.id%type;
+s_name stud.name%type;
+s_city stud.city%type;
+s_marks stud.marks%type;
+
+cursor stud_cursor is select * from Stud;
+begin
+open stud_cursor;
+
+loop
+fetch stud_cursor  into s_id,s_name,s_city,s_marks;
+
+exit when stud_cursor%NOTFOUND;
+
+dbms_output.put_line(s_id||' '||s_name||'   '||s_city||'  '||s_marks);
+
+end loop;
+
+close stud_cursor;
+
+end;

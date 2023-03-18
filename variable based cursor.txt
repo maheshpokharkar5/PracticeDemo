@@ -1,0 +1,19 @@
+declare
+e_ID INT;
+e_NAME varchar(40);
+e_CITY varchar(40);
+e_SALARY INT;
+
+cursor emp_cursor is select id,name,city,salary from EMP;
+begin
+open emp_cursor;
+
+loop
+fetch emp_cursor into e_ID,e_NAME,e_CITY,e_SALARY; 
+exit when emp_cursor%NOTFOUND;
+
+dbms_output.put_line(e_ID||'  '||e_NAME||' '||e_CITY||'  '||e_SALARY); 
+end loop;
+
+close emp_cursor; 
+end;

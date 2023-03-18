@@ -1,0 +1,168 @@
+Error:
+It do not execute program or partially execute the program or give the non-expected output.
+
+Types of Error
+
+1. Compile Time Error
+   detected by java compiler
+ex:
+   i. missing semicolon ;
+   ii. missing curly brace }
+   iii. can not find symbol
+
+2. Run Time Error
+  do not  detected by java compiler
+    i.     java.lang.ArithmeticException: / by zero
+    ii.   java.lang.ArrayIndexOutOfBoundsException
+    iii.  java.lang.NullPointerException
+
+Exception:
+   Exception is condition that is caused by run time error.
+
+  When exception is occured into the program, Exception object is created and it thrown,
+   so the next part of program is not going to be executed.
+
+Exception Handling:
+     It is mechanism to handle the exception
+       The line which throw the exception is skipped and rest of the program
+is executed.
+      To avoid execption we have to try....catch block.
+      The statement which might be  throw exception should be written inside the try block
+and followed by catch block.
+
+               try
+                {
+	int x=6/0;
+                }
+               catch(Exception e)
+                 {
+
+                  }
+
+
+Names of Runtime Exception
+1. ArithmeticException:  caused due to divide by zero
+   ex: int x=8/0;
+
+
+
+2.ArrayIndexOutOfBoundsException: caused due to accessing the index out of bound
+ ex:
+        int x[]={11,12,13,14,15};
+     System.out.println(x[9]);
+
+3.StringIndexOutOfBoundsException: caused due to accessing index out of bounds
+
+    String str="ABC";
+   System.out.println( str.charAt(3));
+
+
+4. NumberFormatException: caused due to conversion of non-numeric string into integer
+                 String str2="12ab";  //non-numeric string
+	int x=Integer.parseInt(str2);
+
+5. NullPointerException : when we are accessing the method from the object
+which contains null;
+
+String str=null;
+System.out.println(str.length());
+
+
+
+//finally
+  
+ finally is block used after try block or           after try .....catch block
+
+   In try..catch block ,  catch block is executed only when try block statement will throw the exception
+  but 
+   
+  finally block is execute regardsless whether  try block statement will throw the exception or not
+
+   'finally' without 'try' can not be wriiten.
+
+   try
+   {
+
+   }
+  catch(Exception e)
+   {
+
+   }
+
+
+
+   try
+  {
+
+
+   }
+  finally
+   {
+
+   }
+
+
+
+
+
+   try
+   {
+
+   }
+  catch(Exception e)
+   {
+
+   }
+   finally
+   {
+
+   }
+
+
+//Checked Exception and Unchecked exception
+
+Checked Exception: exception which can be detected by java compiler called checked exception
+
+1. ClassNotFoundException
+2.SQLException
+3.IOException
+
+Unchecked Exception: exception which are not detected by java compiler called unchecked exception
+
+1. ArithmeticException
+2.ArrayIndexOutOfBoundsException
+3.StringIndexOutOfBoundsException
+4.NumberFormatException
+5.NullPointerException 
+
+
+
+  // throw vs throws
+
+//throw: It is used to throw the  exception object explicitly.
+ 
+ex 1:
+ throw new ArithmeticException();
+
+ex 2:
+   NumberFormatException obj=new NumberFormatException();
+   throw obj1;
+
+
+
+//throws: It is used with method defination to inform caller method that this method might be thown exception.  
+
+
+
+           throw                                                                                                               throws
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+  1. used to throw the exeption explicitly                        1. used to inform the caller method that called method might be throw exception
+
+ 2.  throw followed by exception instance.                     2. throws followed by name of Exception classes
+
+ 3. can not followed by more than one exception          3. throws can be followed by multiple exception classes
+        instance 
+
+ 4. used for unchecked exception mainly.                      4. it is used for checked exception mainly
+
+

@@ -1,0 +1,33 @@
+select * from customer
+
+alter table customer add Balance number;
+
+update customer set balance=10000 where id=11
+
+update customer set balance=12000 where id=12
+
+update customer set balance=14000 where id in (14,15,16)
+
+
+CREATE OR REPLACE  TRIGGER trigger_customer 
+AFTER 
+Update 
+ON customer
+FOR EACH ROW 
+DECLARE 
+bal_diff number;
+BEGIN 
+    
+  if :NEW.balance > :OLD.balance then
+   bal_diff:= :NEW.balance-:OLD.balance;
+   dbms_output.put_line('Amount is credited of '||bal_diff);
+   else
+   bal_diff:= :OLD.balance-:NEW.balance;
+   dbms_output.put_line('Amount is debited of '||bal_diff);
+   end if;
+
+
+dbms_output.put_line('Your balance was  '||:OLD.balance);
+dbms_output.put_line('now Your balance is  '||:NEW.balance);
+
+END;

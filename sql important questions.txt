@@ -1,0 +1,222 @@
+1. find second max salary  from the table Employee
+
+select max(salary) from Employee where salary < (select max(salary) from Employee)
+
+2. What are the DDL queries
+
+1.create 
+2.drop
+3.truncate
+4.alter
+
+3. What are DML queries
+1.Insert
+2.Update
+3.Delete
+
+4.What are TCL queries
+1.Commit
+2.Rollback
+3.Savepoint
+
+5. What is difference between DDL and DML
+
+     DDL                                                                  DML
+------------------------------------------------------------------------------------
+ auto commited                                                     not auto commited
+changes can not be rollback                             changes can be rollback
+
+
+6. what is difference between truncate and delete
+
+       Truncate                                                                                Delete
+-----------------------------------------------------------------------------------------------------
+ 1. delete all the rows                                              1.delete one or more rows
+ 2. DDL commands                                                  2. DML commands
+ 3. deleted data of truncate                                       3. deleted data of Delete can be rollback
+     can not be rollback 
+
+7.what is difference between drop and truncate
+
+       Truncate                                                                                DROP
+-----------------------------------------------------------------------------------------------------------------------------
+ truncate delete only only all rows                                 drop delete all the rows and table
+  but not table
+
+
+8. what is differene between Primary Key and Unique
+
+               Primary Key                                                                        Unique
+----------------------------------------------------------------------------------------------------------------------------------
+ i.can not set more than one primary key                     i. we can set more than one primary key for one table
+    for one table
+
+ii. primary key column do not allow                            ii. unique key column can allow null value
+    null value
+
+
+
+9. what is difference between Union and Union All
+
+              Union                                                                                        Union All
+----------------------------------------------------------------------------------------------------------------------------------------------
+i.    Union avoid duplicate rows in the result table                          Union All allows duplicate rows in the table
+ii.   Union sort the result table                                                         Union All does not sort Union Table
+
+
+10. What are the constraints in SQL
+
+  i. Primary Key
+  ii. Unique
+  iii. Null
+  iv. Not Null
+  v. Foreign key
+   vi. default
+   vii.check
+   viii. index
+
+11. What is join clause ?
+    Join cluase is used to combine the row  of two or more based on column condition
+
+12. Write a join query
+ 
+      Customer                         Order
+
+select c.*,o.* from 
+Customer c Inner Join Order o 
+On 
+c.id=o.id
+
+
+13. What are the types of join
+
+1. Inner Join
+2. Left Join
+3. Right join
+4. Full join
+
+
+14. what is inner join
+  fetch only matched rows from the both tables based on the condition
+
+15. What is left join?
+   fetch matched rows from the both table then unmatched rows from the left table
+  based on the condition
+
+16. What is right join?
+ fetch matched rows from the both table then unmatched rows from the right table
+  based on the condition
+
+17. What is full join?
+ fetch matched rows from the both table than unmatched rows from the left table
+  and then unmatched rows from the right table based on the condition
+
+18. what is difference between where clause and having clause
+  
+       where clause                                                having
+    --------------------------------------------------------------------------
+    used before having                                 used after where
+    used on the table result                         used on the group by result
+
+
+19. write a query to display the names of author and count of books they have written
+
+            Book
+
+       Name                               author
+--------------------------------------------------------------
+       ABC                                ganesh
+       PQR                                 dinesh
+       LMN                                  dipak
+      JKL                                    ganesh
+      BGT                                   ganesh
+      FGT                                   dinesh
+      DRF                                    dipak
+      KIL                                     ganesh
+
+
+    select author,count(author) from Book group by author
+
+20. write a query to fetch first 10 records based on the desceinding order of salary
+
+   select * from    (select * from Employee order by salary desc) where ROWNUM<=10
+
+21. Write a sql query to fetch 10th highest salary
+
+  select * from
+ (select * from    (select * from Employee order by salary desc) where ROWNUM<=10 order by salary)
+  where ROWNUM<=1
+
+22. What are the types index
+      1. Impicit index
+       2. explicit index
+
+                 or
+      1. Clustered index
+      2. Non-clustered index
+
+
+23. difference between insert and update
+
+    insert                                                     update
+--------------------------------------------------------------------
+    adding new rows                      modify the existing rows
+
+
+24. What is diference between procedure and function
+  
+     procedure                                                                          function
+------------------------------------------------------------------------------------------------------------
+i.   procedure does not  return value                   function return the vaue
+ii.  function called inside the procedure             procedure can not be called inside the function
+iii. DML queries can be executed                      DML queries can not be executed inside the function
+      inside procedure
+iv. procedure can not be called in select            function can be called in select query
+
+
+25. write the syntax of the procedure (stored procedure)
+
+   create or replace procedure procedure_name (parameters )
+  is
+   --declaration section
+   begin
+    --executable section
+  end;
+
+26. write the syntax of function
+
+   create or replace function  function_name (parameters )
+   return type is
+   --declaration section
+   begin
+    --executable section
+   --return statement
+  end;
+
+27. what are aggregate functions?
+
+  min,max,avg,sum,count
+
+28. write sql query to fetch the salary from employe from 100000 to 120000 and name starting with A and contains 5 letter
+
+  select * from employee where salary between 100000 and 120000 and name='A____'
+
+29. What is Group by clause:
+   group data based specific column
+
+30. What is Order by caluse.
+   sort the data of table on specific column in ascending or descending order.
+
+ 31.How to create duplicate table of existing table
+
+create table DUPLICATE_TABLE_NAME as select * from TABLE_NAME;
+
+ex: create table Demo as select * from EMP
+
+32.Create duplicate table have same structure but not data
+
+create table DUPLICATE_TABLE_NAME as select * from TABLE_NAME where FALSE_CONDITION
+
+ex: create table SAMPLE as select * from EMP where 1=2
+
+
